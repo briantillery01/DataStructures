@@ -8,6 +8,7 @@ namespace DataStructures.Elements
 {
     class LinkedList
     {
+        //test
         private int _size;
         private Node _head;
         private Node _tail;

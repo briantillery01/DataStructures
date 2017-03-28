@@ -10,7 +10,7 @@ namespace DataStructures.Elements
     {
         private Node _prev;
         private Node _next;
-        private Object _cargo;
+        private object _cargo;
 
         public Node()
         {
@@ -43,7 +43,7 @@ namespace DataStructures.Elements
             set { _next = value; }
         }
 
-        public Object Value
+        public object Value
         {
             get { return _cargo; }
             set { _cargo = value; }
@@ -54,38 +54,5 @@ namespace DataStructures.Elements
             return _cargo.ToString(); 
         }
 
-        public string ToForwardStr()
-        {
-            string sep = "";
-            StringBuilder sb = new StringBuilder();
-            sb.Append("[");
-
-            Node currentNode = this;
-            while(currentNode != null)
-            {
-                sb.Append(string.Format("{0}{1}", sep, currentNode.ToString()));
-                currentNode = currentNode.NextNode;
-                sep = ",";
-            }
-            sb.Append("]");
-            return sb.ToString();
-        }
-
-        public string ToBackwardStr()
-        {
-            string sep = "";
-            StringBuilder sb = new StringBuilder();
-            sb.Append("[");
-
-            Node currentNode = this;
-            while (currentNode != null)
-            {
-                sb.Append(string.Format("{0}{1}", sep, currentNode.ToString()));
-                currentNode = currentNode.PreviousNode;
-                sep = ",";
-            }
-            sb.Append("]");
-            return sb.ToString();
-        }
     }
 }

@@ -8,179 +8,128 @@ namespace DataStructures.Elements
 {
     class LinkedList
     {
-        //test
         private int _size;
         private Node _head;
         private Node _tail;
+        private List<Node> _nodeList;
 
         public LinkedList()
         {
-            _size = 0;
             _head = null;
             _tail = null;
+            _nodeList = new List<Node>();
         }
 
-        public int Length
+        public int Count
         {
-            get { return _size; }
+            get { return _nodeList.Count; }
+        }
+
+        public bool isEmpty
+        {
+            get { return _nodeList.Count == 0; }
         }
 
         public Node Head
         {
-            get { return _head; }
+            get
+            {
+                if(_nodeList.Count == 0) return null;
+                return _nodeList[0];
+            }
         }
 
         public Node Tail
         {
-            get { return _tail; }
+            get
+            {
+                if (_nodeList.Count == 0) return null;
+                return _nodeList[_nodeList.Count - 1];
+            }
+        }
+
+        public Node GetNode(int index)
+        {
+            if(index < 0 || index == _nodeList.Count) { throw new IndexOutOfRangeException(); }
+            return _nodeList[index];
         }
 
         public void InsertFront(Node node)
         {
-            InsertAt(node, 0);
+            _nodeList.Insert(0, node);
         }
 
         public void InsertBack(Node node)
         {
-            InsertAt(node, _size);
+            _nodeList.Insert(_nodeList.Count, node);
         }
 
         public void InsertAt(Node node, int index)
         {
-            if(index < 0)
+            if(index < 0 || index > _nodeList.Count) { throw new IndexOutOfRangeException(); }
+            _nodeList.Insert(index, node);
+        }
+
+        public void InsertBefore(Node node)
+        {
+            int index = _nodeList.IndexOf(node);
+            _nodeList.Insert(index, node);
+        }
+
+        public Object Remove(int index)
+        {
+            if(_nodeList.Count == 0)
             {
-                //error state
-                Console.WriteLine("Error! Index out of range.");
+                throw new NullReferenceException();
             }
 
-            else if (index == 0)
-            {
-                if(_size == 0)
-                {
-                    _head = node;
-                    _tail = _head;
-                }
-
-                else
-                {
-                    Node tmpNode = _head;
-                    tmpNode.PreviousNode = node;
-                    node.NextNode = tmpNode;
-                    _head = node;
-                    tmpNode = null;
-                }                
-
-                _size += 1;
-            }
-
-            else if (index == _size)
-            {
-                Node tmpNode = _tail;
-                tmpNode.NextNode = node;
-                node.PreviousNode = tmpNode;
-                _tail = tmpNode;
-                tmpNode = null;
-
-                _size += 1;
-            }
-
-            else if(index > _size)
-            {
-                //error state
-                Console.WriteLine("Error! Index out of range.");
-            }
-
-            else
-            {
-                Node tmpNode = _head;
-                for(int counter = 0; counter < index; counter++)
-                {
-                    tmpNode = tmpNode.NextNode;
-                }
-
-                node.NextNode = tmpNode;
-                node.PreviousNode = tmpNode.PreviousNode;
-                tmpNode.PreviousNode.NextNode = node;
-                tmpNode.PreviousNode = node;
-                _size += 1;
-            }
+            Node removedNode = _nodeList[index];
+            _nodeList.RemoveAt(index);
+            return removedNode;
         }
 
         public Object Remove(Node node)
         {
-            Node removedNode = null;
-            Node currentNode = _head;
-            while(currentNode != null)
+            if (_nodeList.Count == 0)
             {
-                if(currentNode == node)
-                {
-                    removedNode = currentNode;
-                    Node prevNode = currentNode.PreviousNode;
-                    Node nextNode = currentNode.NextNode;
-
-                    prevNode.NextNode = nextNode;
-                    nextNode.PreviousNode = prevNode;
-
-                    currentNode.PreviousNode = null;
-                    currentNode.NextNode = null;
-                    currentNode = null;
-                    break;
-                }
-                currentNode = currentNode.NextNode;
-            }
-            _size -= 1;
-            return removedNode;
-        }
-
-        public Object RemoveAt(int index)
-        {
-            Node removedNode = null;
-            Node currentNode = _head;
-            for (int counter = 0; counter < index; index++)
-            {
-                currentNode = currentNode.NextNode;
+                throw new NullReferenceException();
             }
 
-            removedNode = currentNode;
-            Node prevNode = currentNode.PreviousNode;
-            Node nextNode = currentNode.NextNode;
-
-            prevNode.NextNode = nextNode;
-            nextNode.PreviousNode = prevNode;
-
-            currentNode.NextNode = null;
-            currentNode.PreviousNode = null;
-            currentNode = null;
-
-            _size -= 1;
-            return removedNode;
+            _nodeList.Remove(node);
+            return node.Value;
         }
 
         public void Clear()
         {
-            Node tmpNode = null;
-            Node currentNode = _tail;
-            while(currentNode != null)
-            {
-                tmpNode = currentNode;
-                currentNode = currentNode.PreviousNode;
-
-                tmpNode.PreviousNode = null;
-                tmpNode.NextNode = null;
-                tmpNode = null;
-            }
-
-            _size = 0;
+            _nodeList.Clear();
         }
 
         public string PrintForward()
         {
-            return _head.ToForwardStr();
+            string sep = "";
+            StringBuilder sb = new StringBuilder();
+            sb.Append("[");
+            for(int count = 0; count < _nodeList.Count; count++)
+            {
+                sb.Append(string.Format("{0}{1}", sep, _nodeList[count].ToString()));
+                sep = ",";
+            }
+            sb.Append("]");
+            return sb.ToString();
         }
 
         public string PrintBackward()
         {
-            return _tail.ToBackwardStr();
+            string sep = "";
+            StringBuilder sb = new StringBuilder();
+            sb.Append("[");
+            for (int count = _nodeList.Count - 1; count >= 0; count--)
+            {
+                sb.Append(string.Format("{0}{1}", sep, _nodeList[count]));
+                sep = ",";
+            }
+            sb.Append("]");
+            return sb.ToString();
         }
 
         public override string ToString()

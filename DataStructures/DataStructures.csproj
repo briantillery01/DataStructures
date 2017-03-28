@@ -45,6 +45,8 @@
   <ItemGroup>
     <Compile Include="Code\Elements\LinkedList.cs" />
     <Compile Include="Code\Elements\Node.cs" />
+    <Compile Include="Code\Elements\Queue.cs" />
+    <Compile Include="Code\Elements\Stack.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

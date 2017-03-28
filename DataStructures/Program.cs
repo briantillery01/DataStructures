@@ -44,6 +44,7 @@ namespace DataStructures
             Console.WriteLine(result);
             linkedList.Clear();
 
+            /*
             linkedList.InsertAt(node1, -1); //Error
             result = linkedList.PrintForward();
             Console.WriteLine(result);
@@ -55,7 +56,8 @@ namespace DataStructures
             result = linkedList.PrintForward();
             Console.WriteLine(result);
             result = linkedList.PrintBackward();
-            Console.WriteLine(result);
+            Console.WriteLine(result); */
+
             linkedList.Clear();
 
             linkedList.InsertFront(node1);

@@ -47,6 +47,8 @@
     <Compile Include="Code\Elements\Node.cs" />
     <Compile Include="Code\Elements\Queue.cs" />
     <Compile Include="Code\Elements\Stack.cs" />
+    <Compile Include="Code\Elements\BinaryNode.cs" />
+    <Compile Include="Code\Searches\BinarySearchTree.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -54,7 +56,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Code\Searches\" />
     <Folder Include="Code\Sorts\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

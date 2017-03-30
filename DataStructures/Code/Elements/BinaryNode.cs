@@ -1,30 +1,30 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataStructures.Elements
 {
+	/// <summary>
+	/// Public class implementation of the binary search tree node data structure;
+	/// </summary>
+	/// <typeparam name="T">The data type of the value that will be kept in the node.</typeparam>
 	class BinaryNode<T>
 	{
 		private T _element;
-		private BinaryNode<T> _firstChild;
-		private BinaryNode<T> _nextSibling;
+		private BinaryNode<T> _left;
+		private BinaryNode<T> _right;
 
 		public BinaryNode()
 		{
 			_element = default(T);
-			_firstChild = null;
-			_nextSibling = null;
+			_left = null;
+			_right = null;
 		}
 
-		public BinaryNode(T element, BinaryNode<T> firstChild, BinaryNode<T> nextSibling) 
+		public BinaryNode(T element, BinaryNode<T> left, BinaryNode<T> right) 
 			: this()
 		{
 			_element = element;
-			_firstChild = firstChild;
-			_nextSibling = nextSibling;
+			_left = left;
+			_right = right;
 		}
 
 		public Type ElementType
@@ -38,36 +38,16 @@ namespace DataStructures.Elements
 			set { _element = value; }
 		}
 
-		public BinaryNode<T> FirstChild
+		public BinaryNode<T> Left
 		{
-			get { return _firstChild; }
-			set { _firstChild = value; }
+			get { return _left; }
+			set { _left = value; }
 		}
 
-		public BinaryNode<T> NextSibling
+		public BinaryNode<T> Right
 		{
-			get { return _nextSibling; }
-			set { _nextSibling = value; }
-		}
-
-		public int Compare(BinaryNode<T> node)
-		{
-			int retVal = 0;
-
-			//if(_elementType != node.ElementType)
-			//{
-			//	throw new Exception(String.Format("Cannot compare types: {0} and {1}.", _elementType.ToString(), node.ElementType.ToString()));
-			//}
-
-			if(typeof(T) == typeof(int))
-			{
-				retVal = Convert.ToInt32(_element) - Convert.ToInt32(node.Element);
-			} else if (typeof(T) == typeof(string))
-			{
-				retVal = string.Compare(Convert.ToString(_element), Convert.ToString(node.Element));
-			}
-
-			return retVal;
+			get { return _right; }
+			set { _right = value; }
 		}
 	}
 }

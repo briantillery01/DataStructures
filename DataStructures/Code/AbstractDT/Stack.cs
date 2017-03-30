@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DataStructures.Elements
+namespace DataStructures.AbstractDT
 {
 	/// <summary>
 	/// Public class implementation of the stack data structure;
@@ -29,40 +29,40 @@ namespace DataStructures.Elements
 		/// </summary>
 		/// <param name="node"></param>
 		/// <returns>True if the node is in the stack, false otherwise.</returns>
-		public bool Contains(Node<T> node)
+		public bool Contains(T value)
 		{
-			return _linkedList.Contains(node);
+			return _linkedList.Contains(value);
 		}
 
 		/// <summary>
 		/// Public method that inserts a node into the stack.
 		/// </summary>
 		/// <param name="node"></param>
-		public void Push(Node<T> node)
+		public void Push(T value)
 		{
-			_linkedList.InsertBack(node);
+			_linkedList.InsertBack(value);
 		}
 
 		/// <summary>
 		/// Public method that looks at the node on top of the stack.
 		/// </summary>
 		/// <returns>The node at the top of the stack.</returns>
-		public Node<T> Peek()
+		public T Peek()
 		{
-			Node<T> removedNode = null;
+			T peekValue = default(T);
 			if(_linkedList.Count > 0)
 			{
-				return _linkedList.GetNode(_linkedList.Count - 1);
+				return _linkedList.GetValue(_linkedList.Count - 1);
 			}
 
-			return removedNode;
+			return peekValue;
 		}
 
 		/// <summary>
 		/// Public method that removes a node from the stack.
 		/// </summary>
 		/// <returns>The node that was removed.</returns>
-		public Node<T> Pop()
+		public T Pop()
 		{
 			if(_linkedList.Count == 0)
 			{

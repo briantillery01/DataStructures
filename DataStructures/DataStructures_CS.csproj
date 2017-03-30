@@ -43,14 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Code\Elements\AvlNode.cs" />
-    <Compile Include="Code\Elements\LinkedList.cs" />
-    <Compile Include="Code\Elements\Node.cs" />
-    <Compile Include="Code\Elements\Queue.cs" />
-    <Compile Include="Code\Elements\Stack.cs" />
-    <Compile Include="Code\Elements\BinaryNode.cs" />
-    <Compile Include="Code\Searches\AvlTree.cs" />
-    <Compile Include="Code\Searches\BinarySearchTree.cs" />
+    <Compile Include="Code\AbstractDT\LinkedList.cs" />
+    <Compile Include="Code\AbstractDT\Queue.cs" />
+    <Compile Include="Code\AbstractDT\Stack.cs" />
+    <Compile Include="Code\Trees\AvlTree.cs" />
+    <Compile Include="Code\Trees\BinarySearchTree.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

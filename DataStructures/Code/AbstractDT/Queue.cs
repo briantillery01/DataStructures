@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DataStructures.Elements
+namespace DataStructures.AbstractDT
 {
 	/// <summary>
 	/// Public class implementation of the queue data structure;
@@ -29,25 +29,25 @@ namespace DataStructures.Elements
 		/// </summary>
 		/// <param name="node"></param>
 		/// <returns>True if the node is in the queue, false otherwise.</returns>
-		public bool Contains(Node<T> node)
+		public bool Contains(T value)
 		{
-			return _linkedList.Contains(node);
+			return _linkedList.Contains(value);
 		}
 
 		/// <summary>
 		/// Public method that inserts a node into the queue.
 		/// </summary>
 		/// <param name="node"></param>
-		public void Enqueue(Node<T> node)
+		public void Enqueue(T value)
 		{
-			_linkedList.InsertBack(node);
+			_linkedList.InsertBack(value);
 		}
 
 		/// <summary>
 		/// Public method that removes a node from the queue.
 		/// </summary>
 		/// <returns>The node that was removed.</returns>
-		public Node<T> Dequeue()
+		public T Dequeue()
 		{
 			if(_linkedList.Count == 0) //from queue specification
 			{

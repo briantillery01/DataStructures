@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DataStructures.Elements
+namespace DataStructures.AbstractDT
 {
 	/// <summary>
 	/// Public class implementation of the linked list data structure;
@@ -10,11 +10,11 @@ namespace DataStructures.Elements
 	/// <typeparam name="T">The data type of the value that will be kept in the linked list.</typeparam>
 	class LinkedList<T>
 	{
-		private List<Node<T>> _nodeList;
+		private List<T> _valueList;
 
 		public LinkedList()
 		{
-			_nodeList = new List<Node<T>>();
+			_valueList = new List<T>();
 		}
 
 		/// <summary>
@@ -22,7 +22,7 @@ namespace DataStructures.Elements
 		/// </summary>
 		public int Count
 		{
-			get { return _nodeList.Count; }
+			get { return _valueList.Count; }
 		}
 
 		/// <summary>
@@ -30,31 +30,7 @@ namespace DataStructures.Elements
 		/// </summary>
 		public bool isEmpty
 		{
-			get { return _nodeList.Count == 0; }
-		}
-
-		/// <summary>
-		/// Retrieves the head of the linked list.
-		/// </summary>
-		public Node<T> Head
-		{
-			get
-			{
-				if (_nodeList.Count == 0) return null;
-				return _nodeList[0];
-			}
-		}
-
-		/// <summary>
-		/// Retrieves the tail of the linked list.
-		/// </summary>
-		public Node<T> Tail
-		{
-			get
-			{
-				if (_nodeList.Count == 0) return null;
-				return _nodeList[_nodeList.Count - 1];
-			}
+			get { return _valueList.Count == 0; }
 		}
 
 		/// <summary>
@@ -62,9 +38,9 @@ namespace DataStructures.Elements
 		/// </summary>
 		/// <param name="node">Node to check for.</param>
 		/// <returns>True if node is present.</returns>
-		public bool Contains(Node<T> node)
+		public bool Contains(T value)
 		{
-			return _nodeList.Contains(node);
+			return _valueList.Contains(value);
 		}	
 
 		/// <summary>
@@ -72,28 +48,28 @@ namespace DataStructures.Elements
 		/// </summary>
 		/// <param name="index"></param>
 		/// <returns></returns>
-		public Node<T> GetNode(int index)
+		public T GetValue(int index)
 		{
-			if (index < 0 || index == _nodeList.Count) { throw new IndexOutOfRangeException(); }
-			return _nodeList[index];
+			if (index < 0 || index == _valueList.Count) { throw new IndexOutOfRangeException(); }
+			return _valueList[index];
 		}
 
 		/// <summary>
 		/// Public method to insert node at the front of the linked list.
 		/// </summary>
 		/// <param name="node">The node to be inserted.</param>
-		public void InsertFront(Node<T> node)
+		public void InsertFront(T value)
 		{
-			_nodeList.Insert(0, node);
+			_valueList.Insert(0, value);
 		}
 
 		/// <summary>
 		/// Public method to insert node at the back of the linked list.
 		/// </summary>
 		/// <param name="node">The node to be inserted.</param>
-		public void InsertBack(Node<T> node)
+		public void InsertBack(T value)
 		{
-			_nodeList.Insert(_nodeList.Count, node);
+			_valueList.Insert(_valueList.Count, value);
 		}
 
 		/// <summary>
@@ -101,10 +77,10 @@ namespace DataStructures.Elements
 		/// </summary>
 		/// <param name="node">The node to be inserted.</param>
 		/// <param name="index">The location the node is to be inserted.</param>
-		public void InsertAt(Node<T> node, int index)
+		public void InsertAt(T value, int index)
 		{
-			if (index < 0 || index > _nodeList.Count) { throw new IndexOutOfRangeException(); }
-			_nodeList.Insert(index, node);
+			if (index < 0 || index > _valueList.Count) { throw new IndexOutOfRangeException(); }
+			_valueList.Insert(index, value);
 		}
 
 		/// <summary>
@@ -112,16 +88,16 @@ namespace DataStructures.Elements
 		/// </summary>
 		/// <param name="index">The location of the node to be remove.</param>
 		/// <returns>The node that was removed from the linked list.</returns>
-		public Node<T> Remove(int index)
+		public T Remove(int index)
 		{
-			if (_nodeList.Count == 0)
+			if (_valueList.Count == 0)
 			{
 				throw new NullReferenceException();
 			}
 
-			Node<T> removedNode = _nodeList[index];
-			_nodeList.RemoveAt(index);
-			return removedNode;
+			T removedValue = _valueList[index];
+			_valueList.RemoveAt(index);
+			return removedValue;
 		}
 
 		/// <summary>
@@ -129,15 +105,15 @@ namespace DataStructures.Elements
 		/// </summary>
 		/// <param name="node">The node to be removed.</param>
 		/// <returns>The value of the removed node.</returns>
-		public T Remove(Node<T> node)
+		public T Remove(T value)
 		{
-			if (_nodeList.Count == 0)
+			if (_valueList.Count == 0)
 			{
 				throw new NullReferenceException();
 			}
 
-			_nodeList.Remove(node);
-			return node.Data;
+			_valueList.Remove(value);
+			return value;
 		}
 
 		/// <summary>
@@ -145,7 +121,7 @@ namespace DataStructures.Elements
 		/// </summary>
 		public void Clear()
 		{
-			_nodeList.Clear();
+			_valueList.Clear();
 		}
 
 		/// <summary>
@@ -157,9 +133,9 @@ namespace DataStructures.Elements
 			string sep = "";
 			StringBuilder sb = new StringBuilder();
 			sb.Append("[");
-			for (int count = 0; count < _nodeList.Count; count++)
+			for (int count = 0; count < _valueList.Count; count++)
 			{
-				sb.Append(string.Format("{0}{1}", sep, _nodeList[count].ToString()));
+				sb.Append(string.Format("{0}{1}", sep, _valueList[count].ToString()));
 				sep = ",";
 			}
 			sb.Append("]");
@@ -175,9 +151,9 @@ namespace DataStructures.Elements
 			string sep = "";
 			StringBuilder sb = new StringBuilder();
 			sb.Append("[");
-			for (int count = _nodeList.Count - 1; count >= 0; count--)
+			for (int count = _valueList.Count - 1; count >= 0; count--)
 			{
-				sb.Append(string.Format("{0}{1}", sep, _nodeList[count]));
+				sb.Append(string.Format("{0}{1}", sep, _valueList[count]));
 				sep = ",";
 			}
 			sb.Append("]");
@@ -192,5 +168,6 @@ namespace DataStructures.Elements
 		{
 			return ToForwardStr();
 		}
+
 	}
 }

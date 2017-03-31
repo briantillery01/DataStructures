@@ -8,7 +8,7 @@ namespace DataStructures.Trees
 	/// <typeparam name="T">The data type of the value that will be kept in the tree.</typeparam>
 	class BinarySearchTree<T>
 	{
-		private BinaryNode<T> _root;
+		private BinaryNode _root;
 
 		public BinarySearchTree()
 		{
@@ -132,7 +132,7 @@ namespace DataStructures.Trees
 		/// <param name="value">The item to search for.</param>
 		/// <param name="subTree">The node that roots the subtree.</param>
 		/// <returns>True if the item is found; false otherwise.</returns>
-		private Boolean Contains(T value, BinaryNode<T> subTree)
+		private Boolean Contains(T value, BinaryNode subTree)
 		{
 			if (subTree == null)
 				return false; //no subtree
@@ -154,7 +154,7 @@ namespace DataStructures.Trees
 		/// </summary>
 		/// <param name="t">The node that roots the subtree.</param>
 		/// <returns>The node containing the smallest item.</returns>
-		private BinaryNode<T> FindMin(BinaryNode<T> t)
+		private BinaryNode FindMin(BinaryNode t)
 		{
 			if (t == null) {
 				return null;
@@ -170,7 +170,7 @@ namespace DataStructures.Trees
 		/// </summary>
 		/// <param name="t">The node that roots the subtree.</param>
 		/// <returns>The node containing the largest item.</returns>
-		private BinaryNode<T> FindMax(BinaryNode<T> t)
+		private BinaryNode FindMax(BinaryNode t)
 		{
 			if (t == null) {
 				return null;
@@ -187,10 +187,10 @@ namespace DataStructures.Trees
 		/// <param name="n">The node to insert.</param>
 		/// <param name="subTree">The node that roots the subtree.</param>
 		/// <returns>The new root of the subtree.</returns>
-		private BinaryNode<T> Insert(T newValue, BinaryNode<T> subTree)
+		private BinaryNode Insert(T newValue, BinaryNode subTree)
 		{
 			if (subTree == null)
-				return new BinaryNode<T>(newValue, null, null); ;
+				return new BinaryNode(newValue, null, null); ;
 
 			int compareResult = Compare(newValue, subTree.Element);
 			if (compareResult < 0) {
@@ -211,7 +211,7 @@ namespace DataStructures.Trees
 		/// <param name="removedValue">The item to remove.</param>
 		/// <param name="subTree">The node that roots the subtree.</param>
 		/// <returns>The new root of the subtree.</returns>
-		private BinaryNode<T> Remove(T removedValue, BinaryNode<T> subTree)
+		private BinaryNode Remove(T removedValue, BinaryNode subTree)
 		{
 			if (subTree == null) //item not found, do nothing
 				return null;
@@ -239,7 +239,7 @@ namespace DataStructures.Trees
 		/// Internal method that prints subtree in sorted order.
 		/// </summary>
 		/// <param name="subTree">The node that roots the subtree.</param>
-		private void PrintTree(BinaryNode<T> subTree)
+		private void PrintTree(BinaryNode subTree)
 		{
 			if(subTree != null) {
 				PrintTree(subTree.Left);
@@ -253,7 +253,7 @@ namespace DataStructures.Trees
 		/// </summary>
 		/// <param name="subTree">The node that roots the subtree.</param>
 		/// <returns>The height of the subtree.</returns>
-		private int Height(BinaryNode<T> subTree)
+		private int Height(BinaryNode subTree)
 		{
 			if (subTree == null){
 				return -1;
@@ -270,11 +270,11 @@ namespace DataStructures.Trees
 		/// Private class implementation of the binary search tree node data structure;
 		/// </summary>
 		/// <typeparam name="T">The data type of the value that will be kept in the node.</typeparam>
-		private class BinaryNode<T>
+		private class BinaryNode
 		{
 			private T _element;
-			private BinaryNode<T> _left;
-			private BinaryNode<T> _right;
+			private BinaryNode _left;
+			private BinaryNode _right;
 
 			public BinaryNode()
 			{
@@ -283,7 +283,7 @@ namespace DataStructures.Trees
 				_right = null;
 			}
 
-			public BinaryNode(T element, BinaryNode<T> left, BinaryNode<T> right)
+			public BinaryNode(T element, BinaryNode left, BinaryNode right)
 				: this()
 			{
 				_element = element;
@@ -302,13 +302,13 @@ namespace DataStructures.Trees
 				set { _element = value; }
 			}
 
-			public BinaryNode<T> Left
+			public BinaryNode Left
 			{
 				get { return _left; }
 				set { _left = value; }
 			}
 
-			public BinaryNode<T> Right
+			public BinaryNode Right
 			{
 				get { return _right; }
 				set { _right = value; }

@@ -44,8 +44,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Code\AbstractDT\LinkedList.cs" />
+    <Compile Include="Code\AbstractDT\Matrix.cs" />
     <Compile Include="Code\AbstractDT\Queue.cs" />
     <Compile Include="Code\AbstractDT\Stack.cs" />
+    <Compile Include="Code\DivideConquer\DivideConquer.cs" />
     <Compile Include="Code\Trees\AvlTree.cs" />
     <Compile Include="Code\Trees\BinarySearchTree.cs" />
     <Compile Include="Program.cs" />
